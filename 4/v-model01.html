@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+  <div id="app">
+    <input type="text" v-model="message">
+<!--    等同于<input type="text" :value="message" @input="message = $event.target.value">-->
+    {{message}}
+    <hr>
+    <label for="male">
+      <input type="radio" value="男" id="male" name="sex" v-model="sex">男
+    </label>
+    <label for="female">
+      <input type="radio" value="女" id="female" name="sex" v-model="sex">女
+    </label>
+    <h2>{{sex}}</h2>
+    <hr>
+    <label for="agree"><input type="checkbox" id="agree" v-model="isAgree">同意</label>
+    <button :disabled="!isAgree">下一步</button>
+    <hr>
+    多选的情形<br>
+    <label for="bsk"><input type="checkbox" id="bsk" v-model="hobbies" value="篮球">篮球</label>
+    <label for="pp"><input type="checkbox" id="pp" v-model="hobbies" value="乒乓球">乒乓球</label>
+    <label for="yumao"><input type="checkbox" id="yumao" v-model="hobbies" value="羽毛球">羽毛球</label>
+    <label for="net"><input type="checkbox" id="net" v-model="hobbies" value="网球">网球</label>
+    <h2>{{hobbies}}</h2>
+    <hr>
+    <select name="fruits" id="1" v-model="fruit">
+      <option value="香蕉">香蕉</option>
+      <option value="苹果">苹果</option>
+      <option value="西瓜">西瓜</option>
+      <option value="樱桃">樱桃</option>
+    </select>
+    <h2>{{fruit}}</h2>
+    <select name="fruits" id="2" v-model="fruits" multiple>
+      <option value="香蕉">香蕉</option>
+      <option value="苹果">苹果</option>
+      <option value="西瓜">西瓜</option>
+      <option value="樱桃">樱桃</option>
+    </select>
+    <h2>{{fruits}}</h2>
+    <hr>
+<!--    input的值绑定-->
+    <label v-for="item in originHobbies" :for="item">
+      <input type="checkbox" :value="item" id="item" v-model="hobbies">{{item}}
+    </label>
+  </div>
+  <script src="../js/vue.js" type="text/javascript" charset="UTF-8"></script>
+  <script type="text/javascript">
+    let app = new Vue({
+      el: '#app',
+      data: {
+        message: 'hxc',
+        sex: '女',
+        isAgree: false,
+        hobbies: [],
+        fruit: '',
+        fruits: [],
+        originHobbies: ['篮球', '羽毛球', '乒乓球', '台球','桌球']
+      }
+    });
+  </script>
+
+</body>
+</html>

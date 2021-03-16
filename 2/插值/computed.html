@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>computed</title>
+</head>
+<body>
+  <div id="app">
+    {{ finalmessage }}
+    总价：{{ totalprice }}
+  </div>
+  <script src="../../js/vue.js" type="text/javascript" charset="UTF-8"></script>
+  <script type="text/javascript">
+    let app = new Vue({
+      el: '#app',
+      data: {
+        message1: 'hxc',
+        message2: 'kkk',
+        books: [
+          {name: 'dasda3', price: 1212},
+          {name: 'dasda1', price: 1142},
+          {name: 'dasda5', price: 1125},
+          {name: 'dasda6', price: 1123},
+        ]
+      },
+      computed: {
+        finalmessage: function (){
+          return this.message1 +' '+ this.message2
+        },
+        totalprice: function (){
+          let total = 0;
+          for(let book of this.books){
+            total = total + book.price
+            console.log(book.name+' '+book.price)
+          }
+          return total
+        }
+      }
+    });
+  </script>
+</body>
+</html>

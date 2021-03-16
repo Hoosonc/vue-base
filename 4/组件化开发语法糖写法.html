@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>组件化开发语法糖写法</title>
+</head>
+<body>
+<div id="app">
+  <acpn2></acpn2>
+</div>
+<script src="../js/vue.js" type="text/javascript" charset="UTF-8"></script>
+<script type="text/javascript">
+
+  const Acpn1 = Vue.extend({
+    template: `
+         <div>
+          <h2>主题1</h2>
+          <p>内容1</p>
+          <p>内容2</p>
+          <p>内容3</p>
+          <p>内容4</p>
+        </div>
+      `
+  })
+
+  // 定义全局组件的语法糖写法
+  /*Vue.component("acpn2", {
+    template: `
+         <div>
+          <h2>主题2</h2>
+          <p>内容1</p>
+          <p>内容2</p>
+          <p>内容3</p>
+          <p>内容4</p>
+          <acpn1></acpn1>
+        </div>
+      `,
+    components: {
+      acpn1: Acpn1
+    }
+  })*/
+
+  let app = new Vue({
+    el: '#app',
+    data: {
+      message: 'hxc'
+    },
+    components:{
+      // 在这里注册是局部属性，即app下才能用
+      // 定义局部变量的语法糖写法
+      acpn2: {
+        template: `
+         <div>
+          <h2>主题2</h2>
+          <p>内容1</p>
+          <p>内容2</p>
+          <p>内容3</p>
+          <p>内容4</p>
+          <acpn1></acpn1>
+        </div>
+      `,
+        components: {
+          acpn1: Acpn1
+        }
+      }
+    }
+  });
+
+</script>
+</body>
+</html>

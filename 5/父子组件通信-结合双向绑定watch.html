@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+<div id="app">
+  {{message}}
+  <cpn :number1="num1" :number2="num2"
+       @num1change="num1change"
+       @num2change="num2change"
+  />
+
+</div>
+<template id="cpn">
+  <div>
+    <h2>props:{{number1}}</h2>
+    <h2>input:{{dnumber1}}</h2>
+          <input type="text" v-model="dnumber1"/>
+<!--    <input type="text" :value="dnumber1" @input="number1input">-->
+    <h2>props:{{number2}}</h2>
+    <h2>input:{{dnumber2}}</h2>
+          <input type="text" v-model="dnumber2"/>
+<!--    <input type="text" :value="dnumber2" @input="number2input">-->
+  </div>
+</template>
+<script src="../js/vue.js" type="text/javascript" charset="UTF-8"></script>
+<script type="text/javascript">
+  const cpn = {
+    template: '#cpn',
+    props:{
+      number1: Number,
+      number2: Number
+    },
+    data(){
+      return{
+        dnumber1: this.number1,
+        dnumber2: this.number2
+      }
+    },
+    watch:{
+      dnumber1(newValue){
+        this.dnumber2 = newValue * 100
+        this.$emit('num1change', newValue)
+      },
+      dnumber2(newValue){
+        this.dnumber1 = newValue / 100
+        this.$emit('num2change', newValue)
+      },
+    },
+    methods: {
+      // number1input(event){
+      //   this.dnumber1 = event.target.value
+      //   this.$emit('num1change', this.dnumber1)
+      //   this.dnumber2 = this.dnumber1 * 100
+      //   this.$emit('num2change', this.dnumber2)
+      // },
+      // number2input(event){
+      //   this.dnumber2 = event.target.value
+      //   this.$emit('num2change',this.dnumber2)
+      //   this.dnumber1 = this.dnumber2 / 100
+      //   this.$emit('num1change', this.dnumber1)
+      // }
+    }
+  }
+  let app = new Vue({
+    el: '#app',
+    data: {
+      message: 'hxc',
+      num1: 1,
+      num2: 0
+    },
+    components: {
+      cpn
+    },
+    methods: {
+      num1change(value){
+        this.num1 = parseFloat(value)
+      },
+      num2change(value){
+        this.num2 = parseFloat(value)
+      },
+    }
+  });
+</script>
+</body>
+</html>

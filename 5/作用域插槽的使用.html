@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+  <div id="app">
+    {{message}}
+    <cpn></cpn>
+    <cpn>
+      <template slot-scope="slot">
+        <span>{{slot.data.join(' - ')}}</span>
+      </template>
+    </cpn>
+  </div>
+  <template id="cpn">
+    <div>
+      <slot :data="planguage">
+        <ul>
+          <li v-for="item in planguage">{{item}}</li>
+        </ul>
+      </slot>
+    </div>
+  </template>
+  <script src="../js/vue.js" type="text/javascript" charset="UTF-8"></script>
+  <script type="text/javascript">
+    const cpn = {
+      template: '#cpn',
+      data(){
+        return{
+          planguage: ['javascript', 'java', 'c#', 'php']
+        }
+      }
+    }
+    let app = new Vue({
+      el: '#app',
+      data() {
+        return{
+          message: 'hxc',
+        }
+      },
+      components:{
+        cpn
+      }
+    });
+  </script>
+</body>
+</html>

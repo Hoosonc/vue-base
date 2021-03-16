@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>类名和样式绑定2</title>
+  <style>
+    .color-gray{
+      color: gray;
+    }
+    .size-18{
+      font-size: 18px;
+    }
+    .style-italic{
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+  <p class="color-gray size-18 style-italic">《一个文本测试而已》</p>
+  <p :style="styleStr">《一个文本测试而已》</p>
+  <p :class="classArr">《一个文本测试而已》</p>
+  <p :style="styleObj1">《一个文本测试而已》</p>
+  <p :style="styleObj2">《一个文本测试而已》</p>
+</div>
+<script src="../../js/vue.js" type="text/javascript" charset="UTF-8"></script>
+<script type="text/javascript">
+  let app = new Vue({
+    el: '#app',
+    data: {
+      styleStr: 'color: gray; font-size: 18px; font-style: italic',
+      classArr: ['color-gray', 'size-18', 'style-italic'],
+      styleObj1:{
+        'color': -1 ? 'gray' : 'black',
+        'font-size': '18px',
+        'style': 'italic'
+      },
+      styleObj2:{
+        'color': 0 ? 'gray' : '',
+        'size-size': '' ? '18px': '',
+        'style': null ? 'italic': ''
+      }
+    }
+  });
+</script>
+</body>
+</html>

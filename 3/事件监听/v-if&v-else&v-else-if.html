@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+  <div id="app">
+    <p v-if="score>90">a</p>
+    <p v-else-if="score>80">b</p>
+    <p v-else>c</p>
+    <hr>
+    <label for="username" v-if="isuser">用户登录</label>
+    <label for="username" v-else>邮箱登录</label>
+    <input type="text" id="username" />
+    <button @click="isuser = !isuser">登录切换</button>
+    <hr>
+<!--    v-for结合key使用-->
+    <ul>
+      <li v-for="(item,key) in info" :key="key">{{item}}</li>
+    </ul>
+    <hr>
+    v-show的使用
+    v-show 隐藏 是display:'none'
+    v-if 隐藏是 visibility:hidden;
+    区别是
+    display:none和visibility:hidden的区别是：
+    1.display:none是彻底消失，不在文档流中占位，浏览器也不会解析该元素；
+    visibility:hidden是视觉上消失了，可以理解为透明度为0的效果，在文档流中占位，浏览器会解析该元素；
+    2.使用visibility:hidden比display:none性能上要好，display:none切换显示时visibility，
+    页面产生回流（当页面中的一部分元素需要改变规模尺寸、布局、显示隐藏等，页面重新构建，此时就是回流。
+    所有页面第一次加载时需要产生一次回流），而visibility切换是否显示时则不会引起回流。
+    <h1 v-show="see">{{msg}}</h1>
+    <h1 v-if="!see">{{msg}}</h1>
+  </div>
+  <script src="../../js/vue.js" type="text/javascript" charset="UTF-8"></script>
+  <script type="text/javascript">
+    let app = new Vue({
+      el: '#app',
+      data: {
+        score: 70,
+        isuser: true,
+        info: ['dsads', 'dasdas', 'dasdasf'],
+        msg: 'fsdfsd',
+        see: true
+      }
+    });
+  </script>
+</body>
+</html>

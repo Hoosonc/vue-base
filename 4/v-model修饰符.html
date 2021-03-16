@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+  <div id="app">
+    <!--    1、lazy-->
+    <input type="text" v-model.lazy="message">
+    {{message}}<br>
+    <!--    2、number-->
+    <input type="number" v-model.number="age" >
+    {{age}}---{{typeof age}}<br>
+    <!--    3、trim(只去除了首尾空格)-->
+    <label for="number"><input type="text" id="number" v-model.trim="message2"></label>{{message2}}
+  </div>
+  <script src="../js/vue.js" type="text/javascript" charset="UTF-8"></script>
+  <script type="text/javascript">
+    let app = new Vue({
+      el: '#app',
+      data: {
+        message: 'hxc',
+        message2: 'hxc',
+        age: 0
+      }
+    });
+  </script>
+</body>
+</html>

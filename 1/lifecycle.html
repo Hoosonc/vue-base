@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../js/vue.js" type="text/javascript" charset="UTF-8"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>{{title}}</h1>
+        <button @click="randomTitle">改变Title</button>
+        <button @click="destroyVm">销毁实例</button>
+    </div>
+    <script type="text/javascript">
+        let app = new Vue({
+           el:'#app',
+           data:{
+               title: 'Hello World'
+           },
+           methods:{
+               randomTitle: function (){
+                   this.title = 'Hello' +
+                       ['China', 'World', 'Universe',][Math.floor(Math.random()*2.999)]
+               },
+               destroyVm: function (){
+                   this.$destroy()
+               }
+           },
+            beforeCreate: function (){
+                console.log('before create')
+            },
+            created: function (){
+                console.log('created')
+            },
+            beforeMount: function (){
+                console.log('before mount')
+            },
+            mounted: function (){
+                console.log('mounted')
+            },
+            beforeUpdate: function (){
+                console.log('before update')
+            },
+            updated: function (){
+                console.log('updated')
+            },
+            beforeDestroy: function (){
+                console.log('before destroy')
+            },
+            destroyed: function (){
+                console.log('destroyed')
+            }
+        });
+        let x = (x=>(x => x*9)(x) + 3)(5)
+        let y = y =>(y =>y*9)(y)+3
+        console.log(x)
+        console.log(y(5))
+    </script>
+</body>
+</html>

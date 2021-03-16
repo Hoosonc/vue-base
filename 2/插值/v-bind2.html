@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>类名和样式绑定</title>
+  <style>
+    .color-gray{
+      color: gray;
+    }
+    .size-18{
+      font-size: 18px;
+    }
+    .style-italic{
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <p class="color-gray size-18 style-italic">《一个文本测试而已》</p>
+    <p :class="classStr">《一个文本测试而已》</p>
+    <p :class="classArr">《一个文本测试而已》</p>
+    <p :class="classObj1">《一个文本测试而已》</p>
+    <p :class="classObj2">《一个文本测试而已》</p>
+  </div>
+  <script src="../../js/vue.js" type="text/javascript" charset="UTF-8"></script>
+  <script type="text/javascript">
+    let app = new Vue({
+      el: '#app',
+      data: {
+        classStr: 'color-gray size-18 style-italic',
+        classArr: ['color-gray', 'size-18', 'style-italic'],
+        classObj1:{
+          'color-gray': true,
+          'size-18': true,
+          'style-italic':true
+        },
+        classObj2:{
+          //当变量值为undefined、null、值为0的数字、空字符串时，也会被判定为假；除一般值外，【】、｛｝、-1、-0.1也会被判定为真
+          'color-gray': [],
+          'size-18': '',
+          'style-italic':false
+        }
+      }
+    });
+  </script>
+</body>
+</html>

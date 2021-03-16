@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>组件化开发</title>
+</head>
+<body>
+  <div id="app">
+    {{message}}
+    <acpn></acpn>
+  </div>
+  <div id="app2">
+    <acpn></acpn>
+  </div>
+  <script src="../js/vue.js" type="text/javascript" charset="UTF-8"></script>
+  <script type="text/javascript">
+
+    const Acpn = Vue.extend({
+      template: `
+         <div>
+          <h2>主题</h2>
+          <p>内容1</p>
+          <p>内容2</p>
+          <p>内容3</p>
+          <p>内容4</p>
+        </div>
+      `
+    })
+    // 在这个地方注册是全局组件
+    // Vue.component("acpn",Acpn)
+
+    let app = new Vue({
+      el: '#app',
+      data: {
+        message: 'hxc'
+      },
+      components:{
+        // 在这里注册是局部属性，即app下才能用
+        acpn: Acpn
+      }
+    });
+    let app2 = new Vue({
+      el: '#app2',
+      data: {
+        message: 'hxc'
+      },
+      // components:{
+      //   // 在这里注册是局部属性，即app下才能用
+      //   acpn: Acpn
+      // }
+    });
+  </script>
+</body>
+</html>

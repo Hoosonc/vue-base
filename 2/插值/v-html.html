@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>html插值</title>
+  <style>
+    .align-center{
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div id="app" style="width: 800px;margin: 0 auto">
+    <div>{{ blog }}</div>
+    <hr>
+    <div v-html="blog"></div>
+  </div>
+  <script src="../../js/vue.js" type="text/javascript" charset="UTF-8"></script>
+  <script type="text/javascript">
+    let app = new Vue({
+      el: '#app',
+      data: {
+        blog: '<h2 class="align-center">一对“兄弟”</h2>'+
+                '<div class="align-center">'+
+                  '<img src = "https://wx4.sinaimg.cn/mw690/6b1489cbly1gmkn0tr0idj20r20r2wfa.jpg" alt = "vfsfsd" />'+
+              '</div>'+
+             ' <p>fsfafsdfsdf</p>'
+      }
+    });
+  </script>
+</body>
+</html>

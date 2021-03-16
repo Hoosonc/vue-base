@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>属性绑定</title>
+  <style>
+    .italic{
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+<!-- ===表示类型和值的比较-->
+  <div id="app" style="margin-left: 300px">
+    <p v-bind:class="className" v-bind:title="title">请勿触碰</p>
+    <button v-bind:disabled="10+10===20">点击有奖</button>
+    <input v-bind:type="'text'" v-bind:placeholder="true ? '请输入' : '请录入'">
+  </div>
+  <script src="../../js/vue.js" type="text/javascript" charset="UTF-8"></script>
+  <script type="text/javascript">
+    let app = new Vue({
+      el: '#app',
+      data: {
+        className: 'italic',
+        title: '危险勿触'
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>v-cloak</title>
+  <style>
+    [v-cloak]{
+      display: none;
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+    <h2 v-cloak>{{message}}</h2>
+  </div>
+  <script src="../../js/vue.js" type="text/javascript" charset="UTF-8"></script>
+  <script type="text/javascript">
+    setTimeout(function (){
+      //在解析vue之前元素中有一个v-cloak属性
+      //在解析vue之后，cloak元素被删除
+      let app = new Vue({
+        el: '#app',
+        data: {
+          message: 'hxc'
+        }
+      });
+    }, 1000)
+  </script>
+</body>
+</html>

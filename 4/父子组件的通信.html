@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>父子组件之间的通信</title>
+</head>
+<body>
+  <div id="app">
+    {{message}}
+    <cpn :cmovies="movies" :cmessage="message"></cpn>
+  </div>
+  <template id="cpn">
+    <div>
+      <h2>{{cmovies}}</h2>
+      <ul>
+        <li v-for="item in cmovies">{{item}}</li>
+      </ul>
+      <p>{{cmessage}}</p>
+    </div>
+  </template>
+  <script src="../js/vue.js" type="text/javascript" charset="UTF-8"></script>
+  <script type="text/javascript">
+    const cpn={
+      template: '#cpn',
+      // props: ['cmovies', 'cmessage'],
+      // 指定类型写法
+      // props: {
+      //   cmovies: Array,
+      //   cmessage: String
+      // },
+      // 还可以指定默认值
+      props: {
+        cmessage:{
+          type: String,
+          default: 'hhkjhk',
+          required: true
+        },
+        cmovies:{
+          type: Array,
+          default: []
+        }
+      },
+      data(){
+        return {}
+    }
+    }
+    let app = new Vue({
+      el: '#app',
+      data: {
+        message: 'hxc',
+        movies: ['海王', '海贼王', '海尔兄弟']
+      },
+      components:{
+        cpn
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>v-bind&v-for</title>
+  <style>
+    .color{
+      color: red;
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+  <ul>
+    <li v-for="(item,key) in movies" :class="{ color: currentIndex === key }" @click="setfontcolor(key)">{{ key }}-{{ item }}</li>
+  </ul>
+  </div>
+  <script src="../../js/vue.js" type="text/javascript" charset="UTF-8"></script>
+  <script type="text/javascript">
+    let app = new Vue({
+      el: '#app',
+      data: {
+        currentIndex: -1,
+        movies: ['dasd', 'daddasd', 'dadasd'],
+        setcolor: false
+      },
+      methods: {
+        setfontcolor(key){
+          this.currentIndex = key
+        }
+      }
+    });
+  </script>
+</body>
+</html>

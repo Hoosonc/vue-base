@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>v-on&事件监听</title>
+  <style type="text/css">
+    .inner {
+      height: 150px;
+      background-color: darkcyan;
+    }
+
+    .outer {
+      padding: 40px;
+      background: red;
+    }
+  </style>
+
+</head>
+<body>
+  <div id="app">
+<!--    <input type="text" @keyup.right="handlekeyup" /><br>-->
+<!--    <input type="text" @keyup.once="handlekeyup($event)"><br>-->
+<!--    &lt;!&ndash;    修饰符&ndash;&gt;-->
+<!--    <form @submit.prevent="handlesubmit">-->
+<!--      <h2>不使用修饰符</h2>-->
+<!--      <button type="submit">提交</button>-->
+<!--    </form>-->
+
+
+    <!-- 使用  .stop  阻止冒泡 -->
+    <!-- <div id="pa" v-on:click="doThat">
+      <a  v-on:click.stop="doThis" href="http://www.baidu.com">百度</a>
+           //点击百度的时候不发生冒泡，执行doThis函数，然后跳转到百度首页。
+                  意思就是不再传播到dothat，只执行dothis就跳了
+    </div> -->
+
+
+    <!-- 使用  .prevent 阻止默认行为 -->
+<!--    <a href="http://baidu.com" @click.prevent="linkClick">百度一下</a>-->
+
+    <!--使用  .capture  实现捕获触发机制  意思就是先执行带.capture的元素内容 -->
+     	<div class="inner" @click.capture="div1Handler">
+      <input type="button" value="点击" @click="btnHandler" />
+    </div>
+
+    <!-- 使用  .self  實現只有点击只有点击当前元素时候，才会触发事件处理函数 -->
+<!--    <div class="inner" @click.self="div1Handler">-->
+<!--      <input type="button" value="点击" @click="btnHandler" />-->
+<!--    </div>-->
+
+    <!-- 使用  .once  只触发一次事件处理函数 -->
+    <!-- 即按照下面的例子，第一次低级不跳转，第二次才跳转 -->
+<!--    <a href="http://baidu.com" @click.prevent.once="linkClick">百度一下</a> -->
+
+    <!-- 演示： .stop  和  .self  的区别 -->
+    <!-- <div class="outer"  @click="div2Handler">
+      <div class="inner" @click="div1Handler">
+        <input type="button" value="点击" @click="btnHandler" />
+      </div>
+    </div>
+     -->
+    <!-- .self只会阻止自己身上的冒泡，并不会真正阻止冒泡-->
+<!--    <div class="outer" @click="div2Handler">-->
+<!--      <div class="inner" @click.self="div1Handler">-->
+<!--        <input type="button" value="点击" @click="btnHandler" />-->
+<!--      </div>-->
+<!--    </div>-->
+    <!-- 触发了bt按钮的点击事件
+      触发了outer div的点击事件-->
+
+<!--    组合修饰符-->
+    <h1 @click.ctrl="logWithCtrl" @click="logSingle">没有ctrl别来找我</h1>
+
+
+  </div>
+  <script src="../../js/vue.js" type="text/javascript" charset="UTF-8"></script>
+  <script type="text/javascript">
+    let app = new Vue({
+      el: '#app',
+      data: {
+        counter: 0
+      },
+      methods: {
+        doThis:function(){
+          console.log('dothis')
+          // alert("doThis");
+        },
+        doThat:function (){
+          alert("doThat")
+        },dodo:function(){
+          alert("dodo")
+        },
+        handlekeyup(){
+          console.log(event.key,event)
+        },
+        handlesubmit(){
+          console.log('submit' + ++this.counter +'times')
+        },
+        doStop(){
+          alert('dasds')
+        },
+        div1Handler() {
+          console.log('触发了inner div的点击事件');
+        },
+        div2Handler() {
+          console.log('触发了outer div的点击事件');
+        },
+        btnHandler() {
+          console.log('触发了bt按钮的点击事件');
+        },
+        linkClick() {
+          console.log('触发了链接');
+        },
+        logWithCtrl(event){
+          console.log('---------分割线-------');
+          console.log('$event.ctrlKey',event.ctrlKey);
+          console.log('按住ctrl键')
+        },
+        logSingle(event){
+          if(!event.ctrlKey){
+            console.log('---------分割线-------');
+            console.log('$event.ctrlKey',event.ctrlKey);
+            console.log('点我？')
+          }else {
+            console.log('emmmm')
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
