@@ -10,6 +10,8 @@
   </style>
 </head>
 <body>
+<!--可以使用 v-cloak 指令设置样式，这些样式会在 Vue 实例编译结束时，从绑定的 HTML 元素上被移除。-->
+<!--当网络较慢，网页还在加载 Vue.js ，而导致 Vue 来不及渲染，这时页面就会显示出 Vue 源代码。我们可以使用 v-cloak 指令来解决这一问题。-->
 <div id="app">
     <h2 v-cloak>{{message}}</h2>
   </div>
@@ -24,7 +26,7 @@
           message: 'hxc'
         }
       });
-    }, 1000)
+    }, 3000)
   </script>
 </body>
 </html>

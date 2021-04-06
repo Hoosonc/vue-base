@@ -77,7 +77,7 @@ let newNums = nums.filter(function (n){
 });
 console.log(newNums)
 // 2、map()
-let newNums2 = newNums.map(function (n){
+let newNums2 = newNums.map((n) => {
   return n*2
 })
 console.log(newNums2);
@@ -86,7 +86,6 @@ let newNums3 = newNums2.reduce(function (preValue,n){
   return preValue + n
 },0)
 console.log(newNums3);
-
 //组合三个函数
 // 法1
 let final1 = nums.filter(function (n){

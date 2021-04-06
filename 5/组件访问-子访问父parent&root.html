@@ -7,23 +7,39 @@
 <body>
   <div id="app">
     {{message}}
-    <cpn></cpn>
+    <cpn2></cpn2>
   </div>
-  <template id="cpn">
+  <template id="cpn1">
     <div>
       <h2>我是子组件</h2>
       <button @click="btnclick">按钮</button>
     </div>
   </template>
+  <template id="cpn2">
+    <div>
+      <cpn1></cpn1>
+    </div>
+  </template>
   <script src="../js/vue.js" type="text/javascript" charset="UTF-8"></script>
   <script type="text/javascript">
-    const cpn = {
-      template: '#cpn',
+    const cpn1 = {
+      template: '#cpn1',
       methods:{
         btnclick(){
           console.log(this.$parent.message)
           console.log(this.$root.message)
         }
+      }
+    }
+    const cpn2 = {
+      template: '#cpn2',
+      data() {
+        return {
+          message: 'hhhhh'
+        }
+      },
+      components: {
+        cpn1
       }
     }
     let app = new Vue({
@@ -34,7 +50,7 @@
         }
       },
       components:{
-        cpn
+        cpn2
       }
     });
   </script>
